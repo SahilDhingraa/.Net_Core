@@ -7,24 +7,29 @@ namespace udemy1.Services.CharacterService
 {
     public class CharacterService : ICharacterService
     {
-        private static List<Character> Characters = new List<Character>{
+        private static List<Character> characters = new List<Character>{
             new Character(),
             new Character{Id = 1, Name = "Sam", HitPoints = 10000}
         };
-        public async Task<List<Character>> AddCharacter(Character newCharacter)
+        public async Task<ServiceResponse<List<Character>>> AddCharacter(Character newCharacter)
         {
-            Characters.Add(newCharacter);
-            return Characters;
+            var ServiceResponse = new ServiceResponse<List<Character>>();
+            characters.Add(newCharacter);
+            ServiceResponse.Data = characters;
+            return ServiceResponse;
         }
 
-        public async Task<List<Character>> GetAllCharacters()
+        public async Task<ServiceResponse<List<Character>>> GetAllCharacters()
         {
-            return Characters;
+            return new ServiceResponse<List<Character>> { Data = characters };
         }
 
-        public async Task<Character> GetCharacterById(int id)
+        public async Task<ServiceResponse<Character>> GetCharacterById(int id)
         {
-            return Characters.FirstOrDefault(c => c.Id == id);
+            var ServiceResponse = new ServiceResponse<Character>();
+            var character = characters.FirstOrDefault(c => c.Id == id);
+            ServiceResponse.Data = character;
+            return ServiceResponse;
 
         }
     }
