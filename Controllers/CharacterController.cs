@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using udemy1.Dtos.Character;
 using udemy1.Services.CharacterService;
 
 namespace udemy1.Controllers
@@ -18,18 +19,18 @@ namespace udemy1.Controllers
             
         }
         [HttpGet("GetAll")]
-        public async Task<ActionResult<ServiceResponse<List<Character>>>> Get()
+        public async Task<ActionResult<ServiceResponse<List<GetCharacterDto>>>> Get()
         {
             return Ok(await _characterService.GetAllCharacters());
         }
         [HttpGet("{id}")]
 
-        public async Task<ActionResult<ServiceResponse<Character>>> Getsingle(int id)
+        public async Task<ActionResult<ServiceResponse<GetCharacterDto>>> Getsingle(int id)
         {
             return Ok(await _characterService.GetCharacterById(id));
         }
         [HttpPost]
-        public async Task<ActionResult<ServiceResponse<List<Character>>>> AddCharacter(Character newCharacter)
+        public async Task<ActionResult<ServiceResponse<List<GetCharacterDto>>>> AddCharacter(AddCharacterDto newCharacter)
         {
             return Ok(await _characterService.AddCharacter(newCharacter));
         }
