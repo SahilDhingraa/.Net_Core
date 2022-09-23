@@ -8,10 +8,6 @@ namespace udemy1.Services.CharacterService
 {
     public class CharacterService : ICharacterService
     {
-        private static List<Character> characters = new List<Character>{
-            new Character(),
-            new Character{Id = 1, Name = "Alaudin Khilji", HitPoints = 10000}
-        };
         private readonly IMapper _mapper;
         private readonly DataContext _context;
 
@@ -25,9 +21,11 @@ namespace udemy1.Services.CharacterService
         {
             var ServiceResponse = new ServiceResponse<List<GetCharacterDto>>();
             Character character = _mapper.Map<Character>(newCharacter);
-            character.Id = characters.Max(c => c.Id) + 1;
-            characters.Add(character);
-            ServiceResponse.Data = characters.Select(c => _mapper.Map<GetCharacterDto>(c)).ToList();
+            _context.Characters.Add(character);
+            await _context.SaveChangesAsync();
+            ServiceResponse.Data = await _context.Characters
+            .Select(c => _mapper.Map<GetCharacterDto>(c))
+            .ToListAsync();
             return ServiceResponse;
         }
 
@@ -37,9 +35,10 @@ namespace udemy1.Services.CharacterService
 
             try
             {
-                Character character = characters.First(c => c.Id == id);
-                characters.Remove(character);
-                response.Data = characters.Select(c => _mapper.Map<GetCharacterDto>(c)).ToList();
+                Character character = await _context.Characters.FirstAsync(c => c.Id == id);
+                _context.Characters.Remove(character);
+                await _context.SaveChangesAsync();
+                response.Data = _context.Characters.Select(c => _mapper.Map<GetCharacterDto>(c)).ToList();
             }
             catch (Exception ex)
             {
@@ -73,8 +72,10 @@ namespace udemy1.Services.CharacterService
 
             try
             {
-                Character character = characters.FirstOrDefault(c => c.Id == updateCharacter.Id);
+                Character character = await _context.Characters
+                .FirstOrDefaultAsync(c => c.Id == updateCharacter.Id);
                 _mapper.Map(updateCharacter, character);
+
                 // character.Name = updateCharacter.Name;
                 // character.HitPoints = updateCharacter.HitPoints;
                 // character.Strength = updateCharacter.Strength;
@@ -82,6 +83,7 @@ namespace udemy1.Services.CharacterService
                 // character.Intelligence = updateCharacter.Intelligence;
                 // character.Class = updateCharacter.Class;
 
+                await _context.SaveChangesAsync();
                 response.Data = _mapper.Map<GetCharacterDto>(character);
             }
             catch (Exception ex)
