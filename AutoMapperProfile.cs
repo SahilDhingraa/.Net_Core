@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using udemy1.Dtos.Character;
 
@@ -13,7 +9,7 @@ namespace udemy1
         {
             CreateMap<Character, GetCharacterDto>();
             CreateMap<AddCharacterDto, Character>();
-
+            CreateMap<UpdateCharacterDto, Character>();
         }
     }
 }
