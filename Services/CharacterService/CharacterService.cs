@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
+using udemy1.Services.CharacterService;
 using udemy1.Dtos.Character;
 
 namespace udemy1.Services.CharacterService
@@ -43,5 +40,22 @@ namespace udemy1.Services.CharacterService
             return ServiceResponse;
 
         }
+
+        public async Task<ServiceResponse<GetCharacterDto>> UpdateCharacter(UpdateCharacterDto updateCharacter)
+        {
+             ServiceResponse<GetCharacterDto> response = new ServiceResponse<GetCharacterDto>();
+            Character character = characters.FirstOrDefault(c => c.Id == updateCharacter.Id);
+
+            character.Name = updateCharacter.Name;
+            character.HitPoints = updateCharacter.HitPoints;
+            character.Strength = updateCharacter.Strength;
+            character.Defense = updateCharacter.Defense;
+            character.Intelligence = updateCharacter.Intelligence;
+            character.Class = updateCharacter.Class;
+
+            response.Data = _mapper.Map<GetCharacterDto>(character);
+            return response;
+        }
+
     }
 }

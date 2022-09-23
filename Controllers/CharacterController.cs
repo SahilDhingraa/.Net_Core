@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using udemy1.Services.CharacterService;
 using udemy1.Dtos.Character;
 using udemy1.Services.CharacterService;
 
@@ -33,6 +30,11 @@ namespace udemy1.Controllers
         public async Task<ActionResult<ServiceResponse<List<GetCharacterDto>>>> AddCharacter(AddCharacterDto newCharacter)
         {
             return Ok(await _characterService.AddCharacter(newCharacter));
+        }
+        [HttpPut]
+        public async Task<ActionResult<ServiceResponse<GetCharacterDto>>> UpdateCharacter(UpdateCharacterDto updateCharacter)
+        {
+            return Ok(await _characterService.UpdateCharacter(updateCharacter));
         }
     }
 }
