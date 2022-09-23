@@ -43,17 +43,26 @@ namespace udemy1.Services.CharacterService
 
         public async Task<ServiceResponse<GetCharacterDto>> UpdateCharacter(UpdateCharacterDto updateCharacter)
         {
-             ServiceResponse<GetCharacterDto> response = new ServiceResponse<GetCharacterDto>();
-            Character character = characters.FirstOrDefault(c => c.Id == updateCharacter.Id);
+            ServiceResponse<GetCharacterDto> response = new ServiceResponse<GetCharacterDto>();
 
-            character.Name = updateCharacter.Name;
-            character.HitPoints = updateCharacter.HitPoints;
-            character.Strength = updateCharacter.Strength;
-            character.Defense = updateCharacter.Defense;
-            character.Intelligence = updateCharacter.Intelligence;
-            character.Class = updateCharacter.Class;
+            try
+            {
+                Character character = characters.FirstOrDefault(c => c.Id == updateCharacter.Id);
 
-            response.Data = _mapper.Map<GetCharacterDto>(character);
+                character.Name = updateCharacter.Name;
+                character.HitPoints = updateCharacter.HitPoints;
+                character.Strength = updateCharacter.Strength;
+                character.Defense = updateCharacter.Defense;
+                character.Intelligence = updateCharacter.Intelligence;
+                character.Class = updateCharacter.Class;
+
+                response.Data = _mapper.Map<GetCharacterDto>(character);
+            }
+            catch (Exception ex)
+            {
+                response.Success = false;
+                response.Message = ex.Message;
+            }
             return response;
         }
     }
