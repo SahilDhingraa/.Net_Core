@@ -56,6 +56,5 @@ namespace udemy1.Services.CharacterService
             response.Data = _mapper.Map<GetCharacterDto>(character);
             return response;
         }
-
     }
 }
