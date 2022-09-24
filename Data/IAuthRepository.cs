@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using udemy1.Services.CharacterService;
 
 namespace udemy1.Data
