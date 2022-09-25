@@ -19,9 +19,19 @@ namespace udemy1.Controllers
         public async Task<ActionResult<ServiceResponse<int>>> Register(UserRegisterDto request)
         {
             var responnse = await _authRepo.Register(
-                new User { Usernmae = request.Username}, request.password
+                new User { Usernmae = request.Username }, request.password
             );
-            if(!responnse.Success)
+            if (!responnse.Success)
+            {
+                return BadRequest(responnse);
+            }
+            return Ok(responnse);
+        }
+        [HttpPost("login")]
+        public async Task<ActionResult<ServiceResponse<string>>> login(UserLoginDto request)
+        {
+            var responnse = await _authRepo.Login(request.Username, request.Password);
+            if (!responnse.Success)
             {
                 return BadRequest(responnse);
             }
