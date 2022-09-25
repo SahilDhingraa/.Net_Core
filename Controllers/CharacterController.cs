@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using udemy1.Services.CharacterService;
 using udemy1.Dtos.Character;
-using udemy1.Services.CharacterService;
+using Microsoft.AspNetCore.Authorization;
 
 namespace udemy1.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class CharacterController : ControllerBase
