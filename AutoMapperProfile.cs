@@ -1,5 +1,6 @@
 using AutoMapper;
 using udemy1.Dtos.Character;
+using udemy1.Dtos.Weapon;
 
 namespace udemy1
 {
@@ -10,6 +11,7 @@ namespace udemy1
             CreateMap<Character, GetCharacterDto>();
             CreateMap<AddCharacterDto, Character>();
             CreateMap<UpdateCharacterDto, Character>();
+            CreateMap<Weapon, GetWeaponDto>();
         }
     }
 }
