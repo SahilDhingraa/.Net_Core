@@ -12,6 +12,6 @@ namespace udemy1
             CreateMap<AddCharacterDto, Character>();
             CreateMap<UpdateCharacterDto, Character>();
             CreateMap<Weapon, GetWeaponDto>();
-        }
+        } 
     }
 }
