@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using udemy1.Dtos.Skill;
 using udemy1.Dtos.Weapon;
 
 namespace udemy1.Dtos.Character
@@ -16,5 +13,6 @@ namespace udemy1.Dtos.Character
         public int Intelligence { get; set; } = 10;
         public RpgClass Class { get; set; } = RpgClass.Banda;
         public GetWeaponDto Weapon { get; set; }
+        public List<GetSkillDto> Skills { get; set; }
     }
 }
