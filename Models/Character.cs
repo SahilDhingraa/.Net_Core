@@ -17,5 +17,8 @@ namespace udemy1.Models
         public User? User { get; set; }
         public Weapon Weapon { get; set; }
         public List<Skill> Skills { get; set; }
+        public int Fghts { get; set; }
+        public int Victories { get; set; }
+        public int Defeats { get; set; }
     }
 }

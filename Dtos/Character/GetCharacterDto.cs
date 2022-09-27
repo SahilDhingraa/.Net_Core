@@ -14,5 +14,8 @@ namespace udemy1.Dtos.Character
         public RpgClass Class { get; set; } = RpgClass.Banda;
         public GetWeaponDto Weapon { get; set; }
         public List<GetSkillDto> Skills { get; set; }
+        public int Fghts { get; set; }
+        public int Victories { get; set; }
+        public int Defeats { get; set; }
     }
 }
