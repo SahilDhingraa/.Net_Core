@@ -1,5 +1,6 @@
 using AutoMapper;
 using udemy1.Dtos.Character;
+using udemy1.Dtos.Fight;
 using udemy1.Dtos.Skill;
 using udemy1.Dtos.Weapon;
 
@@ -14,6 +15,7 @@ namespace udemy1
             CreateMap<UpdateCharacterDto, Character>();
             CreateMap<Weapon, GetWeaponDto>();
             CreateMap<Skill, GetSkillDto>();
+            CreateMap<Character, HighscoreDto>();
         } 
     }
 }
